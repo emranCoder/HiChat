@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
-const { userValidates } = require('../middleware/user/validationCheck');
+const { userValidates, avatarValidation } = require('../middleware/user/validationCheck');
 const { addUser } = require('../controller/userController');
 
 //ROUTE 1: Create a User using:  POST "/api/auth/createuser". No login required Auth
-router.post('/createuser', userValidates, addUser);
+router.post('/createuser', avatarValidation, userValidates, addUser);
 
 
 //ROUTE 2: Ge a User using:  GET "/api/auth/getuser". Login Required

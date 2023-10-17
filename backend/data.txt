@@ -9,3 +9,14 @@
   mobile: '+8801111111111', 
   role: 'user',
 }
+//json Data
+{
+  "fName": "John",
+  "lName": "Doe",
+  "username": "exampleuser",
+  "email": "example@example.com",
+  "pwd": "pAs%word123",
+  "dateOfBirth": "1990-01-01",
+  "mobile": "+8801111111111",
+  "role": "user"
+}

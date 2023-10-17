@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 
 
 const userSchema = new mongoose.Schema({
-    fname: {
+    fName: {
         type: String,
         required: true,
         trim: true,
         maxlength: 50,
     },
-    lname: {
+    lName: {
         type: String,
         required: true,
         trim: true,
@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
         trim: true,
         lowercase: true,
     },
-    password: {
+    pwd: {
         type: String,
         required: true,
         minlength: 8,
