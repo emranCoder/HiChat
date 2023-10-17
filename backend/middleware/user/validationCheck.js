@@ -1,9 +1,9 @@
 const express = require('express');
+const path = require('path');
 const fs = require('fs');
 const { check, validationResult } = require('express-validator');
 const User = require('../../models/User');
 const createHttpError = require('http-errors');
-const Uploader = require('./avatarUpload');
 
 const userValidates = [
     // Validation checks using express-validator
@@ -40,37 +40,25 @@ const userValidates = [
 ];
 
 
-const avatarValidation = (req, res, next) => {
+const avatarValidation = function (req, res, next) {
+
     const errors = validationResult(req);
     const allErrors = errors.mapped();
 
     if (Object.keys(allErrors).length === 0) {
-        const upload_avatar = Uploader("avatars", ["image/jpeg", "image/jpg", "image/png"], 1000000, "Only .jpg, jpeg or .png format allowed!");
-        upload_avatar.any()(req, res, (err) => {
-            if (err) {
-                return res.status(500).json({
-                    errors: {
-                        avatar: { msg: err.message },
-                    }
-                })
-            }
-        });
         next();
     } else {
 
-        const fileDest = '../../public/uploads/avatar/';
+        const fileDest = '../../public/uploads/avatars/';
         if (req.files && req.files.length > 0) {
-            const fileName = req.files[0].fileName;
-            const removeFile = fs.unlink(path.join(__dirname, fileDest + fileName))
-            if (!removeFile) {
-                console.log(removeFile);
-            }
-
+            const fileName = req.files[0].filename;
+            fs.unlink(path.join(__dirname, fileDest + fileName), (err) => {
+                if (err) console.log(err);
+            });
         }
 
         res.status(500).json({ err: allErrors });
     }
-
 
 }
 

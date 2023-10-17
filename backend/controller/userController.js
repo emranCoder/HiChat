@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 
 
 async function addUser(req, res, next) {
-    console.log(req.body);
     try {
         let uData;
         const encPwd = await bcrypt.hash(req.body.pwd, 12);
@@ -11,7 +10,7 @@ async function addUser(req, res, next) {
         if (req.files && req.files.length > 0) {
             uData = {
                 ...req.body,
-                avatar: req.files.filename,
+                avatar: req.files[0].filename,
                 pwd: encPwd,
             }
         } else {
@@ -26,7 +25,9 @@ async function addUser(req, res, next) {
         if (!addUser) { return res.res.status(500).send({ err: "Unable to add user!" }); }
         res.status(200).json({ message: "User added Successfully!", user: uData });
     } catch (error) {
-        res.status(500).send({ err: "Bad request!" });
+        res.status(500).send({
+            err: "Bad request!"
+        });
     }
 }
 
