@@ -39,7 +39,6 @@ const userValidates = [
     check('dateOfBirth', 'Invalid date of birth').isISO8601(),
 ];
 
-
 const avatarValidation = function (req, res, next) {
 
     const errors = validationResult(req);
@@ -62,6 +61,25 @@ const avatarValidation = function (req, res, next) {
 
 }
 
+const loginValidates = [
+    check('username').not()
+        .isEmpty()
+        .withMessage('Invalid username'),
+    check('pwd', 'Password must be strong 8 character, mix with upper case, lowercase & with number').isStrongPassword(),
+];
 
 
-module.exports = { userValidates, avatarValidation };
+const loginValidation = (req, res, next) => {
+    const errors = validationResult(req);
+    const allErrors = errors.mapped();
+
+    if (Object.keys(allErrors).length === 0) {
+        next();
+    } else {
+        res.status(500).json({ err: allErrors });
+    }
+}
+
+
+
+module.exports = { loginValidates, userValidates, avatarValidation, loginValidation };

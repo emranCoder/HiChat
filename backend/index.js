@@ -1,7 +1,8 @@
 const express = require('express');
 const db = require('./config/db');
 const dotenv = require('dotenv');
-const authRouter = require('./routes/auth');
+const authRoutes = require('./routes/auth');
+const loginRoutes = require('./routes/login');
 const { errorHandler, notFoundError } = require('./middleware/error_handler');
 
 const app = express()
@@ -10,7 +11,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.use('/api/auth', authRouter);
+app.use('/api/auth', authRoutes);
+app.use('/api/login', loginRoutes);
 
 app.use(notFoundError);
 app.use(errorHandler);

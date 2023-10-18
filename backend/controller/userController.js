@@ -1,13 +1,14 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
+const { hashedPwd } = require('../config/utility');
 const path = require('path');
 
 
 const addUser = async (req, res) => {
     try {
         let uData;
-        const encPwd = await bcrypt.hash(req.body.pwd, 12);
+        const encPwd = await hashedPwd(req.body.pwd);
 
         if (req.files && req.files.length > 0) {
             uData = {
