@@ -2,7 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
 
-async function addUser(req, res, next) {
+const addUser = async (req, res, next) => {
     try {
         let uData;
         const encPwd = await bcrypt.hash(req.body.pwd, 12);
@@ -31,4 +31,42 @@ async function addUser(req, res, next) {
     }
 }
 
-module.exports = { addUser };
+const getUser = async (req, res, next) => {
+    try {
+        const uId = req.params.id;
+        const user = await User.findById(uId).select('-pwd -__v');
+        res.status(200).json({ user: user });
+    } catch (error) {
+        res.status(500).send({
+            err: "Bad request!"
+        });
+    }
+}
+
+const updateUser = async (req, res, next) => {
+    try {
+
+        res.status(200).json({ message: "User added Successfully!", user: uData });
+    } catch (error) {
+        res.status(500).send({
+            err: "Bad request!"
+        });
+    }
+}
+
+const removeUser = async (req, res, next) => {
+    try {
+
+
+        res.status(200).json({ message: "User added Successfully!", user: uData });
+    } catch (error) {
+        res.status(500).send({
+            err: "Bad request!"
+        });
+    }
+}
+
+
+
+
+module.exports = { addUser, getUser, updateUser, removeUser };
