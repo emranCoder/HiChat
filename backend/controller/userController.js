@@ -45,8 +45,15 @@ const getUser = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
     try {
+        const { id, ...bodyData } = { ...req.body };
 
-        res.status(200).json({ message: "User added Successfully!", user: uData });
+        const user = await User.findByIdAndUpdate(id, bodyData);
+        if (!user) {
+            return res.status(500).send({
+                err: "Server is down!"
+            });
+        }
+        res.status(200).json({ mess: "You got a update!" });
     } catch (error) {
         res.status(500).send({
             err: "Bad request!"
