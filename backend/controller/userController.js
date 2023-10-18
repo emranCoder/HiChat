@@ -1,5 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const fs = require('fs');
+const path = require('path');
 
 
 const addUser = async (req, res, next) => {
@@ -63,12 +65,27 @@ const updateUser = async (req, res, next) => {
 
 const removeUser = async (req, res, next) => {
     try {
+        const id = req.body.id;
+        const user = await User.findByIdAndDelete(id).select('avatar -_id');
+        if (!user) {
+            return res.status(404).send({
+                err: "Server is down!"
+            });
+        }
+        const fileName = user.avatar;
+        if (!(fileName === "default-avatar.png")) {
+            const fileDest = '../public/uploads/avatars/';
 
-
-        res.status(200).json({ message: "User added Successfully!", user: uData });
+            fs.unlink(path.join(__dirname, fileDest + fileName), (err) => {
+                if (err) {
+                    res.status(404).json({ err: err });
+                }
+            });
+        }
+        res.status(200).json({ mess: "Deleted Successfully!" });
     } catch (error) {
         res.status(500).send({
-            err: "Bad request!"
+            err: "Bad Request!"
         });
     }
 }
