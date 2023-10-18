@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 
-const addUser = async (req, res, next) => {
+const addUser = async (req, res) => {
     try {
         let uData;
         const encPwd = await bcrypt.hash(req.body.pwd, 12);
@@ -33,7 +33,7 @@ const addUser = async (req, res, next) => {
     }
 }
 
-const getUser = async (req, res, next) => {
+const getUser = async (req, res) => {
     try {
         const uId = req.params.id;
         const user = await User.findById(uId).select('-pwd -__v');
@@ -45,7 +45,7 @@ const getUser = async (req, res, next) => {
     }
 }
 
-const updateUser = async (req, res, next) => {
+const updateUser = async (req, res) => {
     try {
         const { id, ...bodyData } = { ...req.body };
 
@@ -63,7 +63,7 @@ const updateUser = async (req, res, next) => {
     }
 }
 
-const removeUser = async (req, res, next) => {
+const removeUser = async (req, res) => {
     try {
         const id = req.body.id;
         const user = await User.findByIdAndDelete(id).select('avatar -_id');
