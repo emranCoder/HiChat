@@ -8,7 +8,6 @@ const authCheck = require('../middleware/authHandler');
 //ROUTE 1: Create a User using:  POST "/api/auth/createuser". No login required Auth
 router.post('/createuser', avatarUpload, userValidates, avatarValidation, addUser);
 
-
 //ROUTE 2: Ge a User using:  GET "/api/auth/getuser". Login Required
 router.get('/getuser/:id', authCheck, getUser);
 

@@ -36,6 +36,7 @@ const addUser = async (req, res) => {
 
 const getUser = async (req, res) => {
     try {
+
         const uId = req.params.id;
         const user = await User.findById(uId).select('-pwd -__v');
         res.status(200).json({ user: user });
