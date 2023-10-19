@@ -23,10 +23,19 @@ const login = async (req, res) => {
                 err: "Authentication failed!",
             });
         }
-        const authToken = {
-            token: token,
-            logIn: Date.now(),
-            logOut: null,
+        let authToken;
+        if (user.auth[0]) {
+            const logOutTime = Date.now();
+            authToken = {
+                ...user.auth[0],
+                logOut: logOutTime,
+            }
+        } else {
+            authToken = {
+                token: token,
+                logIn: Date.now(),
+                logOut: null,
+            }
         }
         user.auth = authToken;
         const tokenUpdate = await user.save();
