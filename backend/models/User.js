@@ -61,6 +61,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'default-avatar.png',
     },
+    auth: [
+        {
+            type: Object,
+            default: null,
+        },
+    ]
 }, {
     timestamps: true,
 });

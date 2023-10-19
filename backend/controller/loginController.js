@@ -7,7 +7,7 @@ const login = async (req, res) => {
     try {
         const { username, pwd } = { ...req.body };
 
-        const user = await User.findOne({ $or: [{ username: username }, { mobile: username }, { email: username }] }).select('pwd');
+        const user = await User.findOne({ $or: [{ username: username }, { mobile: username }, { email: username }] }).select('pwd auth');
         if (!user) {
             return res.status(404).send({
                 err: "Check fields!",
@@ -17,7 +17,20 @@ const login = async (req, res) => {
         const userId = user._id;
         const value = username + "_" + userId;
         const token = await checkPwd(pwd, userPwd, value);
+
         if (!token) {
+            return res.status(404).send({
+                err: "Authentication failed!",
+            });
+        }
+        const authToken = {
+            token: token,
+            logIn: Date.now(),
+            logOut: null,
+        }
+        user.auth = authToken;
+        const tokenUpdate = await user.save();
+        if (!tokenUpdate) {
             return res.status(404).send({
                 err: "Authentication failed!",
             });
@@ -26,8 +39,22 @@ const login = async (req, res) => {
     } catch (error) {
         res.status(500).send({
             err: "Bad request!",
+            error
         });
     }
 }
 
-module.exports = login;
+const logout = async (req, res) => {
+
+    try {
+
+    } catch (error) {
+        res.status(500).send({
+            err: "Bad request!",
+        });
+    }
+}
+
+
+
+module.exports = { login, logout };
