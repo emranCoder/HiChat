@@ -36,7 +36,12 @@ const addUser = async (req, res) => {
 
 const getUser = async (req, res) => {
     try {
-
+        const queryId = req.params.id;
+        if (!(req.uID === queryId)) {
+            return res.status(404).send({
+                err: "False Attempted!"
+            });
+        }
         const uId = req.params.id;
         const user = await User.findById(uId).select('-pwd -__v');
         res.status(200).json({ user: user });
