@@ -1,0 +1,26 @@
+
+.flex{
+  display: flex;
+}
+.justify-normal{
+  justify-content: normal;
+}
+.h-full{
+  height: 100%;
+}
+.chat-circle-img {
+  display: inline-block;
+  overflow: hidden;
+  width: 2.75rem; /* 44px */
+  height: 2.75rem; /* 44px */
+}
+.text-lg{
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.75rem; /* 28px */
+}
+.chat-circle-img img {
+  clip-path: circle();
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
