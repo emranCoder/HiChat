@@ -1,26 +1,73 @@
-
+:root{
+  height: 100%;
+}
+html{
+  height: 100%;
+}
+body{
+  background-color: #f5f7fb;
+  height: 100%;
+}
+p{
+  color: #343a40;
+}
+span{
+  color: #7a7f9a;
+}
+.bg-white{
+background-color: #e6ebf5  !important;
+}
 .flex{
   display: flex;
 }
 .justify-normal{
-  justify-content: normal;
+  justify-content: space-normal;
 }
 .h-full{
   height: 100%;
 }
+.h-vh{
+  height: 91dvh;
+}
+.mouse-pointer{
+cursor: pointer;
+}
+.mouse-pointer-hover:hover{
+background-color: #e6ebf5;
+}
 .chat-circle-img {
   display: inline-block;
-  overflow: hidden;
   width: 2.75rem; /* 44px */
   height: 2.75rem; /* 44px */
 }
-.text-lg{
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.75rem; /* 28px */
-}
+
 .chat-circle-img img {
   clip-path: circle();
   width: 100% !important;
   height: 100% !important;
   object-fit: cover;
+}
+.chat-circle-img .status::after{
+  content: "";
+  background-color: red;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+.avatar-title
+{
+  margin-left: 20px;
+  margin-top: auto; 
+line-height: 0.5;
+  margin-bottom: auto;
+  text-align: left;
+}
+.avatar-title p{
+  font-size: 1.125rem; /* 18px */
+  text-transform: capitalize;
+  font-weight: 600;  
 }
