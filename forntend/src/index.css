@@ -1,9 +1,13 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+
 :root {
   --chat-box-text-color: #7a7f9a;
   --bg-color-light-default: #f5f7fb;
   --bg-color-of-light: #e6ebf5;
   --text-color-ofblack: #343a40;
   --mess-border-color: #343a4052;
+  --mess-sender-color: #6a9df7;
+  --mess-receiver-color: #58687e;
 }
 
 html {
@@ -25,10 +29,6 @@ span {
 
 .bg-white {
   background-color: var(--bg-color-of-light) !important;
-}
-
-.flex {
-  display: flex;
 }
 
 .justify-normal {
@@ -132,18 +132,15 @@ span {
   height: 100%;
   color: white;
   width: 100%;
-  display: block;
+  display: flex;
+  flex-direction: column;
   position: relative;
 }
 
 .mess-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: block;
   width: 100%;
   max-width: 100%;
-  margin: auto;
+  margin-bottom: 0;
 }
 
 .message-input {
@@ -166,4 +163,57 @@ span {
 .message-input:focus-visible {
   border: 1px solid var(--mess-border-color);
   outline: none;
+}
+
+.mess-sender {
+  width: max-content;
+  max-width: 40%;
+}
+
+.mess-receiver {
+  width: max-content;
+  max-width: 40%;
+  display: flex;
+  justify-content: end;
+  float: right;
+}
+
+.mess-receiver .sender-img {
+  height: 1.7rem;
+  width: 1.7rem;
+}
+
+.mess-sender .sender-img {
+  height: 1.7rem;
+  width: 1.7rem;
+}
+
+.mess-sender .mess-card {
+  text-align: left;
+  border: none;
+  background-color: var(--mess-receiver-color);
+}
+
+.time-stamp {
+  text-align: right;
+  display: flex;
+  justify-content: end;
+  margin: 0;
+  padding: 0;
+}
+
+.mess-receiver .mess-card {
+  text-align: left;
+  border: none;
+  background-color: var(--mess-sender-color);
+}
+
+.message-item {
+  overflow-y: scroll;
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.message-item tr {
+  display: flow-root;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import ChatList from "./ChatList";
 import ConversationBox from "./ConversationBox";
-import EmptyConversation from "./EmptyConversation";
+//import EmptyConversation from "./EmptyConversation";
 
 export default function ChatBox() {
   return (
