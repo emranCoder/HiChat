@@ -15,7 +15,7 @@ const checkChatStatus = async (req, res, next) => {
         }
         next();
     } catch (error) {
-        res.status(500).send({ err: "Midl Bad request!" });
+        res.status(500).send({ err: "Bad request!" });
     }
 
 }

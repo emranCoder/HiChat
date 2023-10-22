@@ -1,6 +1,6 @@
 {
   "name": "hichat_backend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "HiChat is a social media app where people can post, study, chat & more.",
   "main": "index.js",
   "scripts": {

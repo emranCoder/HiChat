@@ -63,6 +63,7 @@ const userSchema = new mongoose.Schema({
     },
     chats: [{
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'Chat',
         default: null
     }],
     auth: [
