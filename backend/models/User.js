@@ -61,6 +61,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'default-avatar.png',
     },
+    chats: [{
+        type: mongoose.Schema.Types.ObjectId,
+        default: null
+    }],
     auth: [
         {
             type: Object,

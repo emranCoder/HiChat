@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-
+const User = require('./User');
 
 const messagesSchema = new mongoose.Schema({
     sender: {
-        type: new mongoose.Types.Object,
-        ref: "User"
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     },
     content: {
         type: String,

@@ -1,26 +1,25 @@
 const mongoose = require('mongoose');
 
-
 const chatSchema = new mongoose.Schema({
     createdBy: {
-        type: new mongoose.Types.ObjectId,
-        ref: "User"
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     },
     sender: {
-        type: new mongoose.Types.ObjectId,
-        ref: "User",
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
     receiver: {
-        type: new mongoose.Types.Object,
-        ref: "User",
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
-    message: {
-        type: new mongoose.Types.ObjectId,
-        ref: "Message",
-        required: true
-    }
+    message: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Messages",
+        default: null
+    }]
 }, {
     timestamps: true,
 });
@@ -29,3 +28,5 @@ const chatSchema = new mongoose.Schema({
 const Chat = new mongoose.model('Chat', chatSchema);
 
 module.exports = Chat;
+
+

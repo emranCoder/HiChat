@@ -45,7 +45,7 @@ const login = async (req, res) => {
     }
 }
 
-const logout = async (req, res) => {
+const logout = async (req, res, next) => {
 
     try {
         const qId = req.body.id;

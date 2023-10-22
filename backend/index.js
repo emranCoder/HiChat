@@ -3,6 +3,7 @@ const db = require('./config/db');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
 const loginRoutes = require('./routes/login');
+const chatRoutes = require('./routes/chat');
 const { errorHandler, notFoundError } = require('./middleware/error_handler');
 
 const app = express()
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/login', loginRoutes);
+app.use('/api/chat', chatRoutes);
 
 app.use(notFoundError);
 app.use(errorHandler);
