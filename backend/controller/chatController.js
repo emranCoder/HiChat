@@ -8,7 +8,7 @@ const getChats = async (req, res) => {
     try {
         const qId = req.params.id;
 
-        const user = await User.findById(qId).select('chats').populate('chats');
+        const user = await User.findById(qId).select('chats').populate('chats', '-message');
         if (!user) { return res.status(404).send({ err: "Server is down!" }); }
 
         let data = user.chats;
