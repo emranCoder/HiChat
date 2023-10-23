@@ -12,6 +12,8 @@ const getChats = async (req, res) => {
         if (!user) { return res.status(404).send({ err: "Server is down!" }); }
 
         let data = user.chats;
+
+        console.log();
         const chkSender = JSON.stringify(user.chats[0].receiver) === JSON.stringify(qId);
         if (chkSender) {
             data.forEach(e => {
@@ -21,8 +23,13 @@ const getChats = async (req, res) => {
                 e.receiver = senId;
             });
         }
+        for (let index = 0; index < data.length; index++) {
+            await data[index].populate('receiver', 'fName  lName username mobile email country avatar')
+
+        }
         res.status(200).send({ data });
     } catch (error) {
+        console.log(error);
         res.status(500).send({
             err: "Bad request!",
         });
@@ -96,7 +103,7 @@ const getMessages = async (req, res) => {
     try {
         const qId = req.params.id;
 
-        const chats = await Chat.findById(qId).select('message').populate('message', "-_id -__v -updatedAt");
+        const chats = await Chat.findById(qId).select('message').populate('message', " -__v -updatedAt");
         if (!chats) { return res.status(404).send({ err: "Server is down!" }); }
 
         res.status(200).send({ chats });

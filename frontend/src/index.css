@@ -1,5 +1,3 @@
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
-
 :root {
   --chat-box-text-color: #7a7f9a;
   --bg-color-light-default: #f5f7fb;
@@ -174,7 +172,7 @@ span {
   width: max-content;
   max-width: 40%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   float: right;
 }
 
@@ -197,7 +195,7 @@ span {
 .time-stamp {
   text-align: right;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin: 0;
   padding: 0;
 }
@@ -216,4 +214,8 @@ span {
 
 .message-item tr {
   display: flow-root;
+}
+
+.tr {
+  clear: both;
 }
