@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchMessages } from "../redux/messSlice";
+import utility from "../redux/storeData";
 
 export default function ChatListItem(props) {
+  const dispatch = useDispatch();
+
+  const getMess = () => {
+    utility.set("65327969361a957ae14938da");
+    dispatch(fetchMessages(props.messId));
+  };
+
   return (
-    <li className="list-group-item rounded-pill d-flex justify-normal mouse-pointer mouse-pointer-hover">
+    <li
+      onClick={getMess}
+      className="list-group-item rounded-pill d-flex justify-normal mouse-pointer mouse-pointer-hover"
+    >
       <div className="chat-circle-img avatar-img position-relative">
         <img
           src={"http://localhost:5000/avatar/" + props.avatar}
