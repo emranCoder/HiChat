@@ -37,13 +37,15 @@ const addUser = async (req, res) => {
 const getUser = async (req, res) => {
     try {
         const queryId = req.params.id;
-        if (!(req.uID === queryId)) {
-            return res.status(404).send({
-                err: "False Attempted!"
-            });
+        let user;
+        if (queryId === "auth") {
+            user = await User.findById(req.uID).select('-pwd -__v -auth');
+        } else {
+            user = await User.findById(queryId).select('-pwd -__v -auth');
         }
-        const uId = req.params.id;
-        const user = await User.findById(uId).select('-pwd -__v');
+        if (!user) {
+            return res.status(404).json({ err: "False Attempted!" });
+        }
         res.status(200).json({ user: user });
     } catch (error) {
         res.status(500).send({

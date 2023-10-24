@@ -1,12 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MessageSender from "./MessageSender";
 import MessageReceiver from "./MessageReceiver";
 import { useSelector } from "react-redux";
 import utility from "../redux/storeData";
 export default function ConversationBox() {
+  const scrollBardBottom = () => {
+    const item = document.querySelector(".message-box .message-item");
+    item.scrollTop = item.scrollHeight;
+  };
+
+  useEffect(() => {
+    scrollBardBottom();
+  }, []);
+
   const { isLoading, mess } = useSelector((state) => state.mess);
 
   const uID = utility.get();
+
+  const [newMess, setNewMess] = useState(null);
+
+  const handleKeypress = (e) => {
+    if (e.code && e.ctrlKey) {
+      console.log(e.target);
+    }
+  };
+  const handleMessages = (e) => {
+    setNewMess(e.target.value);
+  };
 
   return (
     <div className="col-md-9">
@@ -40,6 +60,8 @@ export default function ConversationBox() {
           </div>
           <div className="mess-footer mt-5">
             <input
+              onKeyPress={handleKeypress}
+              onChange={handleMessages}
               type="text"
               className="message-input"
               id="message"

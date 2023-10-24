@@ -1,10 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import getCookie from "../utility/cookie";
+
+const token = getCookie("auth");
 
 export const fetchChats = createAsyncThunk("chats/fetchChats", async () => {
-  const response = await axios.get(
-    "http://localhost:5000/api/chat/allchats/65327969361a957ae14938da"
-  );
+  const response = await axios.get("http://localhost:5000/api/chat/allchats/", {
+    headers: {
+      token: token,
+    },
+  });
   return response.data.data;
 });
 

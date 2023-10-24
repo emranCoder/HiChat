@@ -21,6 +21,7 @@ export default function ChatList() {
           chats.map((item) => (
             <ChatListItem
               key={item._id}
+              senderId={item.sender}
               messId={item._id}
               avatar={item.receiver.avatar}
               name={item.receiver.fName + " " + item.receiver.lName}

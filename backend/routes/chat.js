@@ -10,7 +10,7 @@ router.post('/create', checkChatStatus, startChat);
 //ROUTE 2: Chat with message:  POST '/api/chat'. No login required Auth
 router.post('/message', chatMessage);
 //ROUTE 3: Get all message:  POST '/api/chat'. No login required Auth
-router.get('/allchats/:id', getChats);
+router.get('/allchats', authCheck, getChats);
 //ROUTE 4: Get all message:  POST '/api/chat'. No login required Auth
 router.get('/allmess/:id', getMessages);
 

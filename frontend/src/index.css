@@ -30,7 +30,7 @@ span {
 }
 
 .justify-normal {
-  justify-content: space-normal;
+  justify-content: normal;
 }
 
 .h-full {
@@ -210,6 +210,12 @@ span {
   overflow-y: scroll;
   margin-top: auto;
   margin-bottom: 0;
+  overflow: auto;
+  /* Enable scrolling */
+  scroll-snap-type: y mandatory;
+  /* Enable y-axis scrolling and snap to points */
+  scroll-snap-align: end;
+  /* Start the scrollbar at the bottom */
 }
 
 .message-item tr {

@@ -7,7 +7,7 @@ export default function ChatListItem(props) {
   const dispatch = useDispatch();
 
   const getMess = () => {
-    utility.set("65327969361a957ae14938da");
+    utility.set(props.senderId);
     dispatch(fetchMessages(props.messId));
   };
 
