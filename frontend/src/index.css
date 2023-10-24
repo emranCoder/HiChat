@@ -194,16 +194,15 @@ span {
 
 .time-stamp {
   text-align: right;
-  display: flex;
-  justify-content: flex-end;
-  margin: 0;
-  padding: 0;
+  display: block;
 }
 
 .mess-receiver .mess-card {
-  text-align: left;
+  text-align: right;
   border: none;
   background-color: var(--mess-sender-color);
+  width: max-content;
+  float: right;
 }
 
 .message-item {

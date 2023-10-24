@@ -7,9 +7,23 @@ export const fetchMessages = createAsyncThunk(
     const response = await axios.get(
       `http://localhost:5000/api/chat/allmess/${id}`
     );
-    return response.data.chats.message;
+    return response.data.chats;
   }
 );
+export const sendMessages = async (sender, message, chat_id) => {
+  const rawData = {
+    id: chat_id,
+    sender: sender,
+    content: message,
+    seen: false,
+  };
+  const response = await axios.post(
+    "http://localhost:5000/api/chat/message",
+    rawData
+  );
+  const data = await response.data.saveMessages;
+  return data;
+};
 
 const messSlice = createSlice({
   name: "message",

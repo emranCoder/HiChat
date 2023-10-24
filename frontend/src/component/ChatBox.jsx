@@ -7,14 +7,10 @@ import EmptyConversation from "./EmptyConversation";
 export default function ChatBox() {
   const { mess } = useSelector((state) => state.mess);
 
-  const handleChats = (e) => {
-    console.log(e);
-  };
-
   return (
     <div className="container-fluid">
       <div className="row">
-        <ChatList handleChats={handleChats} />
+        <ChatList />
         {(mess && <ConversationBox />) || <EmptyConversation />}
       </div>
     </div>

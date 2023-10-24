@@ -94,6 +94,7 @@ const chatMessage = async (req, res) => {
         res.status(200).send({ mess: "Your message added", saveMessages });
     } catch (error) {
         res.status(500).send({
+
             err: "Bad request!",
         });
     }

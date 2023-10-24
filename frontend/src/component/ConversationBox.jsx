@@ -1,29 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MessageSender from "./MessageSender";
 import MessageReceiver from "./MessageReceiver";
 import { useSelector } from "react-redux";
 import utility from "../redux/storeData";
+import { sendMessages } from "../redux/messSlice";
+
+import ScrollToBottom, { useSticky } from "react-scroll-to-bottom";
+
 export default function ConversationBox() {
-  const scrollBardBottom = () => {
-    const item = document.querySelector(".message-box .message-item");
-    item.scrollTop = item.scrollHeight;
-  };
-
-  useEffect(() => {
-    scrollBardBottom();
-  }, []);
-
   const { isLoading, mess } = useSelector((state) => state.mess);
 
   const uID = utility.get();
 
-  const [newMess, setNewMess] = useState(null);
+  const sticky = useSticky();
 
-  const handleKeypress = (e) => {
+  const [newMess, setNewMess] = useState(null);
+  const [appendMess, setAppendMess] = useState(null);
+  const handleKeypress = async (e) => {
     if (e.code && e.ctrlKey) {
-      console.log(e.target);
+      if (newMess) {
+        const data = await sendMessages(uID, newMess, mess._id);
+        setNewMess(null);
+        e.target.value = null;
+        if (appendMess) setAppendMess([...appendMess, data]);
+        else setAppendMess([data]);
+      }
     }
   };
+  console.log(appendMess);
   const handleMessages = (e) => {
     setNewMess(e.target.value);
   };
@@ -32,20 +36,11 @@ export default function ConversationBox() {
     <div className="col-md-9">
       <div className="chat-box h-vh rounded-4 p-2">
         <div className="message-box">
-          <div className="message-item">
+          <ScrollToBottom sticky className={"message-item mb-5 " + sticky}>
             {isLoading && <p>Data Loading...</p>}
             {mess &&
-              mess.map((item, index) =>
+              mess.message.map((item, index) =>
                 uID === item.sender ? (
-                  <div className="tr" key={item._id + index}>
-                    <MessageSender
-                      key={item._id + index}
-                      content={item.content}
-                      status={item.status}
-                      time={item.createdAt}
-                    />
-                  </div>
-                ) : (
                   <div className="tr" key={item._id + index}>
                     <MessageReceiver
                       key={item._id + index}
@@ -55,10 +50,31 @@ export default function ConversationBox() {
                       receiverTime={item.createdAt}
                     />
                   </div>
+                ) : (
+                  <div className="tr" key={item._id + index}>
+                    <MessageSender
+                      key={item._id + index}
+                      content={item.content}
+                      status={item.status}
+                      time={item.createdAt}
+                    />
+                  </div>
                 )
               )}
-          </div>
-          <div className="mess-footer mt-5">
+            {appendMess &&
+              appendMess.map((item, index) => (
+                <div className="tr" key={item._id + index}>
+                  <MessageReceiver
+                    key={item._id + index}
+                    id={item._id + index}
+                    receiverContent={item.content}
+                    receiverStatus={item.status}
+                    receiverTime={item.createdAt}
+                  />
+                </div>
+              ))}
+          </ScrollToBottom>
+          <div className="mess-footer ">
             <input
               onKeyPress={handleKeypress}
               onChange={handleMessages}
