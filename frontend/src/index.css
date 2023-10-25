@@ -226,3 +226,103 @@ span {
 .tr {
   clear: both;
 }
+
+/* login section */
+.logo-box h3 {
+  color: #355b82;
+  font-size: 70px;
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.logo-box p {
+  font-size: 30px;
+  color: #355c824f;
+}
+
+.login-form {
+  border: 1px solid #355c824f;
+  transition: 0.5s;
+  background-color: white;
+}
+
+.login-form:hover {
+  box-shadow: 0 0 50px -29px #66b2ff;
+}
+
+.login-form .form-title {
+  font-size: 2rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: center;
+  font-weight: bold;
+  color: #355b82;
+}
+
+.login-form input[type='pwd'],
+input[type='email'] {
+  padding: 10px;
+  padding-left: 30px;
+  color: #343a40;
+  border-color: #355b8245;
+}
+
+.login-form input {
+  transition: 0.5s;
+}
+
+.login-form input:focus {
+  border-color: #355b82;
+  box-shadow: 0 0 34px .25rem #7698ff1a;
+  transform: scale(1.02);
+}
+
+.login-form .form-check {
+  margin: auto;
+  margin-left: 15px;
+}
+
+.login-form #rmm {
+  border-color: #58687e9c;
+}
+
+.login-form input::placeholder {
+  opacity: 1;
+  color: #a5aac2;
+}
+
+.login-form button[type="submit"] {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: auto;
+  font-size: 18px;
+  text-transform: uppercase;
+  background-color: transparent;
+  border-color: #355b82;
+  border-width: 1px;
+  border-style: solid;
+  color: #355b82;
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+.forget-pwd {
+  text-align: center;
+  text-decoration: none;
+  color: #355b82b2;
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+.forget-pwd:hover {
+  text-decoration: underline 2px dotted #355b82;
+  color: #355b82;
+}
+
+.login-form button[type="submit"]:hover {
+  background: #355b82;
+  color: white;
+  transform: scale(1.1);
+}
