@@ -1,14 +1,15 @@
-import ChatBox from "./component/ChatBox";
 import Header from "./component/Header";
-
+//import ChatBox from "./component/ChatBox";
+import LoginComponent from "./component/LoginComponent"
 
 
 function App() {
   return (
-    <div >
+    <>
       <Header />
-      <ChatBox />
-    </div>
+      {/* <ChatBox /> */}
+      <LoginComponent />
+    </>
   );
 }
 
