@@ -27,11 +27,9 @@ export default function ConversationBox() {
       }
     }
   };
-  console.log(appendMess);
   const handleMessages = (e) => {
     setNewMess(e.target.value);
   };
-
   return (
     <div className="col-md-9">
       <div className="chat-box h-vh rounded-4 p-2">

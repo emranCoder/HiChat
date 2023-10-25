@@ -1,5 +1,5 @@
 import React from "react";
-
+import utility from "../redux/storeData";
 export default function MessageSender(props) {
   const currentDate = new Date().getMinutes();
   const dbMinuteGet = new Date(props.time).getMinutes() + 1;
@@ -8,7 +8,7 @@ export default function MessageSender(props) {
     <div className="mess-sender d-flex ">
       <div className="sender-img chat-circle-img">
         <img
-          src="https://www.itl.cat/pngfile/big/289-2896659_beautiful-girl-wallpaper-download-beautiful-girl-wallpaper-hd.jpg"
+          src={"http://localhost:5000/avatar/" + utility.getSenderAvatar()}
           alt="sender-img"
         />
       </div>

@@ -62,9 +62,7 @@ const avatarValidation = function (req, res, next) {
 }
 
 const loginValidates = [
-    check('username').not()
-        .isEmpty()
-        .withMessage('Invalid username'),
+    check('username', 'Invalid username').not().isEmpty(),
     check('pwd', 'Password must be strong 8 character, mix with upper case, lowercase & with number').isStrongPassword(),
 ];
 
@@ -72,7 +70,6 @@ const loginValidates = [
 const loginValidation = (req, res, next) => {
     const errors = validationResult(req);
     const allErrors = errors.mapped();
-
     if (Object.keys(allErrors).length === 0) {
         next();
     } else {

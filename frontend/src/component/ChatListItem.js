@@ -2,12 +2,12 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { fetchMessages } from "../redux/messSlice";
 import utility from "../redux/storeData";
-
 export default function ChatListItem(props) {
   const dispatch = useDispatch();
 
   const getMess = () => {
     utility.set(props.senderId);
+    utility.setSenderAvatar(props.avatar);
     dispatch(fetchMessages(props.messId));
   };
 

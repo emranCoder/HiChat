@@ -7,6 +7,7 @@ export const fetchMessages = createAsyncThunk(
     const response = await axios.get(
       `http://localhost:5000/api/chat/allmess/${id}`
     );
+
     return response.data.chats;
   }
 );
@@ -24,7 +25,6 @@ export const sendMessages = async (sender, message, chat_id) => {
   const data = await response.data.saveMessages;
   return data;
 };
-
 const messSlice = createSlice({
   name: "message",
   initialState: {
@@ -47,4 +47,7 @@ const messSlice = createSlice({
     });
   },
 });
+
+
 export default messSlice.reducer;
+
