@@ -9,6 +9,16 @@
 
 }
 
+::-moz-selection {
+  color: white;
+  background: #355c82d8;
+}
+
+::selection {
+  color: white;
+  background: #355c82d8;
+}
+
 html {
   height: 100%;
 }
@@ -231,6 +241,13 @@ span {
 }
 
 /* login section */
+.logo-box {
+  transition: 0.5s;
+  margin-top: 100px;
+  user-select: none;
+}
+
+
 .logo-box h3 {
   color: #355b82;
   font-size: 70px;
@@ -247,9 +264,12 @@ span {
   border: 1px solid #355c824f;
   transition: 0.5s;
   background-color: white;
+  margin-top: 90px;
+  cursor: text;
 }
 
 .login-form:hover {
+  border-color: #a5d2ff;
   box-shadow: 0 0 50px -29px #66b2ff;
 }
 
@@ -259,6 +279,10 @@ span {
   text-align: center;
   font-weight: bold;
   color: #355b82;
+}
+
+.login-form input {
+  cursor: pointer;
 }
 
 .login-form input[type='text'],
@@ -274,8 +298,8 @@ input[type='password'] {
 }
 
 .login-form input:focus {
-  border-color: #355b82;
-  box-shadow: 0 0 34px .25rem #7698ff1a;
+  border-color: #355b82 !important;
+  box-shadow: 0 0 34px .25rem #7698ff3a !important;
   transform: scale(1.02);
 }
 

@@ -48,16 +48,16 @@ export default function LoginComponent() {
 
     return (
         <div className='container '>
-            <div className="row">
-                <div className="col-md-6 col-lg-6">
-                    <div className="logo-box p-5" style={{ marginTop: "100px " }}>
-                        <h3>HiChat</h3>
+            <div className="row m-auto">
+                <div className="col-md-6 col-lg-6 m-auto">
+                    <div className="logo-box p-5" >
+                        <h3 className='logo-title'>HiChat</h3>
                         <p>Connecting Conversations, One Message at a Time.</p>
                     </div>
                 </div>
-                <div className="col-md-6 col-lg-6">
-                    <form onSubmit={(e) => { e.preventDefault() }} className='login-form rounded-5 p-5 mt-5' >
-                        <h3 className='form-title m-5 mt-0'>Login Form</h3>
+                <div className="col-md-6 col-lg-6 m-auto">
+                    <form onSubmit={(e) => { e.preventDefault() }} className='login-form rounded-5 p-5 ' >
+                        <h3 className='form-title mb-5 mt-0'>Login Form</h3>
                         <div className="mb-3">
                             <input
                                 placeholder='Email, Mobile or Username'

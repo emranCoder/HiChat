@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function EmptyConversation() {
+
   return (
     <div className="col-md-9">
       <div className="chat-box mouse-pointer bg-white h-vh rounded-4">
