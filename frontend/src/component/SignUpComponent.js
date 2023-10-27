@@ -15,7 +15,6 @@ export default function SignUpComponent() {
     }
 
     return (
-        <div>
             <div className='container-fluid'>
                 <div className="row m-auto">
                     <div className="col-md-1 col-lg-1 ">
@@ -123,6 +122,5 @@ export default function SignUpComponent() {
                     </div>
                 </div>
             </div >
-        </div>
     )
 }
