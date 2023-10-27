@@ -353,3 +353,11 @@ input[type='password'] {
   color: white;
   transform: scale(1.1);
 }
+
+/* SignUp Form */
+.sign-up input {
+  padding: 10px;
+  padding-left: 30px;
+  color: #343a40;
+  border-color: #355b8245;
+}

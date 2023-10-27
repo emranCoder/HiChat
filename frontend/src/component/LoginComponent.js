@@ -4,17 +4,10 @@ import { setCookie } from '../utility/cookie';
 export default function LoginComponent() {
 
     const [error, setError] = useState(null);
-    const [data, setData] = useState({
-        username: null,
-        pwd: null
-    });
-    const handleUserName = (e) => {
+    const [data, setData] = useState(null);
+    const handleInput = (e) => {
 
-        setData({ ...data, username: e.target.value })
-    }
-    const handleUserPwd = (e) => {
-
-        setData({ ...data, pwd: e.target.value })
+        setData({ ...data, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = async () => {
@@ -66,7 +59,7 @@ export default function LoginComponent() {
                                 id="username"
                                 aria-describedby="emailHelp"
                                 name='username'
-                                onChange={handleUserName}
+                                onChange={handleInput}
                             />
                             {(error != null && error) && (<span id="emailError" className="form-text text-danger">
                                 {error.err.username.msg}
@@ -80,7 +73,7 @@ export default function LoginComponent() {
                                 name='pwd'
                                 className={((error != null && error.err.pwd.msg) && ("form-control rounded-pill border-danger")) || ("form-control rounded-pill ")}
                                 id="pwd"
-                                onChange={handleUserPwd}
+                                onChange={handleInput}
                             />
                             {(error != null && error.err.pwd.msg) && (<span id="emailError" className="form-text text-danger">
                                 {error.err.pwd.msg}
