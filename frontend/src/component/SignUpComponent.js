@@ -16,35 +16,20 @@ export default function SignUpComponent() {
 
     return (
         <div>
-            <div className='container'>
+            <div className='container-fluid'>
                 <div className="row m-auto">
-                    <div className="col-md-6 col-lg-6 m-auto">
-                        <div className="logo-box p-5" >
-                            <h3 className='logo-title'>HiChat</h3>
-                            <p>Connecting Conversations, One Message at a Time.</p>
+                    <div className="col-md-1 col-lg-1 ">
+                        <div className="logo-box sign-up-logo" >
+                            <h3 className='logo-title '>HiChat</h3>
                         </div>
                     </div>
-                    <div className="col-md-6 col-lg-6 m-auto">
-                        <form onSubmit={(e) => { e.preventDefault() }} className='login-form rounded-5 p-5  sign-up' >
-                            <h3 className='form-title mb-5 mt-0'>Login Form</h3>
-                            <div className="mb-3">
-                                <input
-                                    placeholder='Email, Mobile or Username'
-                                    type="text"
-                                    className={(((error != null) && (error.err.username.msg)) && ("form-control rounded-pill border-danger")) || ("form-control rounded-pill border")}
-                                    id="username"
-                                    aria-describedby="emailHelp"
-                                    name='username'
-                                    onChange={handleInput}
-                                />
-                                {/* {(error != null && error) && (<span id="emailError" className="form-text text-danger">
-                                    {error.err.username.msg}
-                                </span>)} */}
+                    <div className="col-md-11 col-lg-11 ">
+                        <form onSubmit={(e) => { e.preventDefault() }} className='login-form rounded-5 p-5  sign-up ' >
+                            <h3 className='form-title mb-5 mt-0'>Welcome</h3>
 
-                            </div>
-                            <div className="mb-3">
+                            <div className="mb-3 inline">
                                 <input
-                                    placeholder='Type your First Name'
+                                    placeholder='Put your First Name'
                                     type="text"
                                     className={(((error != null) && (error.err.username.msg)) && ("form-control rounded-pill border-danger")) || ("form-control rounded-pill border")}
                                     id="fName"
@@ -57,9 +42,9 @@ export default function SignUpComponent() {
                                 </span>)} */}
 
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-3 me-0 inline">
                                 <input
-                                    placeholder='Type your First Last Name'
+                                    placeholder='Put your Last Name'
                                     type="text"
                                     className={(((error != null) && (error.err.username.msg)) && ("form-control rounded-pill border-danger")) || ("form-control rounded-pill border")}
                                     id="lName"
@@ -72,9 +57,9 @@ export default function SignUpComponent() {
                                 </span>)} */}
 
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-3 ">
                                 <input
-                                    placeholder='Put your First Email'
+                                    placeholder='Put your Email'
                                     type="email"
                                     className={(((error != null) && (error.err.username.msg)) && ("form-control rounded-pill border-danger")) || ("form-control rounded-pill border")}
                                     id="email"
@@ -87,9 +72,9 @@ export default function SignUpComponent() {
                                 </span>)} */}
 
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-3 ">
                                 <input
-                                    placeholder='Put your First Mobile No'
+                                    placeholder='Put your Mobile No'
                                     type="tel"
                                     className={(((error != null) && (error.err.username.msg)) && ("form-control rounded-pill border-danger")) || ("form-control rounded-pill border")}
                                     id="mobileNo"
@@ -102,7 +87,7 @@ export default function SignUpComponent() {
                                 </span>)} */}
 
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-3 ">
                                 <input
                                     placeholder='Password'
                                     type="password"
@@ -115,7 +100,7 @@ export default function SignUpComponent() {
                                     {error.err.pwd.msg}
                                 </span>)} */}
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-3 ">
                                 <input
                                     placeholder='Confirm Password'
                                     type="password"
@@ -128,14 +113,11 @@ export default function SignUpComponent() {
                                     {error.err.pwd.msg}
                                 </span>)} */}
                             </div>
-                            <div className="mb-3">
-                                <a href="#section" className='forget-pwd'>Forget Password?</a>
-                            </div>
                             <button onClick={handleSubmit} type="submit" className="btn btn-primary rounded-pill">
                                 SIGN IN
                             </button>
                             <div className="m-3 ">
-                                <a href="#section" className='forget-pwd'>Create a new account</a>
+                                <a href="#section" className='forget-pwd'>Already Have An Account?</a>
                             </div>
                         </form>
                     </div>

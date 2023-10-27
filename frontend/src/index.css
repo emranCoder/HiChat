@@ -355,9 +355,39 @@ input[type='password'] {
 }
 
 /* SignUp Form */
+.sign-up {
+  margin: 20px auto !important;
+}
+
+.sign-up-logo {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  margin: auto;
+
+}
+
+.sign-up-logo .logo-title {
+  text-align: left;
+  display: block;
+  transform: rotate(-90deg);
+  font-size: 10rem;
+  margin-left: 10px;
+  opacity: 10%;
+  object-position: 0px;
+  z-index: -1;
+}
+
+.sign-up .inline {
+  display: inline-block;
+  margin-right: 10px;
+  width: 49%;
+}
+
 .sign-up input {
   padding: 10px;
   padding-left: 30px;
   color: #343a40;
   border-color: #355b8245;
+  transition: 0.3s !important;
 }
