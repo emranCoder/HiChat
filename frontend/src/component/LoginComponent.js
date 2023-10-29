@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { setCookie } from '../utility/cookie';
+import { Link } from "react-router-dom";
 
 export default function LoginComponent() {
 
@@ -28,7 +29,7 @@ export default function LoginComponent() {
                 } else {
                     token = data.token;
                     id = data.id;
-                    setCookie("auth", token, 1);
+                    setCookie("auth", token, 24);
                     setCookie("ID", id, 1);
                     window.location.reload();
                 }
@@ -96,11 +97,11 @@ export default function LoginComponent() {
                             SIGN IN
                         </button>
                         <div className="m-3 ">
-                            <a href="#section" className='forget-pwd'>Create a new account</a>
+                            <Link to="/signup" className='forget-pwd'>Create a new account</Link>
                         </div>
                     </form>
                 </div>
-            </div>
+            </div >
         </div >
     )
 }

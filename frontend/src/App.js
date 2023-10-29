@@ -1,16 +1,23 @@
 import Header from "./component/Header";
-// import ChatBox from "./component/ChatBox";
-// import LoginComponent from "./component/LoginComponent"
+import ChatBox from "./component/ChatBox";
+import LoginComponent from "./component/LoginComponent"
 import getCookie from "./utility/cookie";
 import SignUpComponent from "./component/SignUpComponent";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 function App() {
   const auth = getCookie('auth');
   return (
     <>
-      {(auth && <Header />)}
+      <BrowserRouter >
+        {(auth && <Header />)}
+        {auth && <ChatBox />}
+        <Routes>
 
-      {/* {(auth && <ChatBox />) || <LoginComponent />} */}
-      <SignUpComponent />
+          <Route path="/" Component={(!auth && LoginComponent)} />
+          <Route path="/signup" Component={!auth && SignUpComponent} />
+        </Routes>
+      </BrowserRouter >
     </>
   );
 }

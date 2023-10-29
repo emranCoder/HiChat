@@ -178,6 +178,8 @@ span {
   outline: none;
 }
 
+
+
 .mess-sender {
   width: max-content;
   max-width: 40%;
@@ -297,6 +299,11 @@ input[type='password'] {
   transition: 0.5s;
 }
 
+.login-form input[name="confPwd"]:focus {
+  border-color: var(--bs-form-invalid-color) !important;
+  outline: none;
+}
+
 .login-form input:focus {
   border-color: #355b82 !important;
   box-shadow: 0 0 34px .25rem #7698ff3a !important;
@@ -315,6 +322,10 @@ input[type='password'] {
 .login-form input::placeholder {
   opacity: 1;
   color: #a5aac2;
+}
+
+.login-form label {
+  color: #58687e;
 }
 
 .login-form button[type="submit"] {
@@ -346,6 +357,7 @@ input[type='password'] {
 .forget-pwd:hover {
   text-decoration: underline 2px dotted #355b82;
   color: #355b82;
+  transform: scale(1.02);
 }
 
 .login-form button[type="submit"]:hover {
@@ -381,7 +393,7 @@ input[type='password'] {
 .sign-up .inline {
   display: inline-block;
   margin-right: 10px;
-  width: 49%;
+  width: 32.7%;
 }
 
 .sign-up input {

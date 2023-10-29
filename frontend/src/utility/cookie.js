@@ -9,9 +9,9 @@ export default function getCookie(cname) {
     return "";
 }
 
-export function setCookie(cname, cvalue, exdays) {
+export function setCookie(cname, cvalue, exhours) {
     const d = new Date();
-    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+    d.setTime(d.getTime() + exhours * 60 * 60 * 1000);
     let expires = "expires=" + d.toUTCString();
     document.cookie =
         cname + "=" + cvalue + ";" + expires + ";Secure;path=http://localhost:5000;SameSite=None";

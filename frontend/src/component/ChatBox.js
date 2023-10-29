@@ -5,14 +5,14 @@ import { useSelector } from "react-redux";
 import EmptyConversation from "./EmptyConversation";
 
 export default function ChatBox() {
-  const { mess } = useSelector((state) => state.mess);
+    const { mess } = useSelector((state) => state.mess);
 
-  return (
-    <div className="container-fluid">
-      <div className="row">
-        <ChatList />
-        {(mess && <ConversationBox />) || <EmptyConversation />}
-      </div>
-    </div>
-  );
+    return (
+        <div className="container-fluid">
+            <div className="row">
+                <ChatList />
+                {(mess && <ConversationBox />) || <EmptyConversation />}
+            </div>
+        </div>
+    );
 }

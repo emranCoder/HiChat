@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const { hashedPwd } = require('../config/utility');
 const path = require('path');
@@ -26,7 +26,8 @@ const addUser = async (req, res) => {
         const newUser = new User(uData);
         const addUser = await newUser.save();
         if (!addUser) { return res.res.status(500).send({ err: "Unable to add user!" }); }
-        res.status(200).json({ message: "User added Successfully!", user: uData });
+        const token = jwt.sign({ token: addUser._id }, process.env.JWT_SECRETS, { expiresIn: '2h' });
+        res.status(200).json({ message: "User added Successfully!", user: token });
     } catch (error) {
         res.status(500).send({
             err: "Bad request!"
