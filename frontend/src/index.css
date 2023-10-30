@@ -36,6 +36,12 @@ span {
   color: var(--chat-box-text-color);
 }
 
+@media only screen and (max-width: 600px) {
+  [class*="col-hide"] {
+    display: none !important;
+  }
+}
+
 .border-danger {
   border-color: var(--bs-form-invalid-color);
 }
@@ -243,12 +249,32 @@ span {
 }
 
 /* login section */
-.logo-box {
-  transition: 0.5s;
-  margin-top: 100px;
-  user-select: none;
+@media only screen and (max-width: 600px) {
+  .login-form {
+    margin-top: 25px !important;
+  }
+
+  .sign-up .inline {
+    width: 100% !important;
+  }
+
+  .log .logo-box {
+    width: 100%;
+    padding: 10px !important;
+    margin: auto !important;
+    margin-top: 100px !important;
+  }
+
+  .log .logo-box .btn-login {
+    display: block !important;
+  }
 }
 
+.logo-box {
+  transition: 0.5s;
+  margin-top: auto;
+  user-select: none;
+}
 
 .logo-box h3 {
   color: #355b82;
@@ -260,6 +286,24 @@ span {
 .logo-box p {
   font-size: 30px;
   color: #355c824f;
+}
+
+.btn-login {
+  background-color: var(--mess-sender-color);
+  border: none;
+  outline: none;
+  width: 50%;
+  padding: 10px;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.btn-login:hover {
+  background-color: transparent !important;
+  border-color: var(--mess-sender-color) !important;
+  border: 1px solid;
+  color: var(--mess-sender-color);
+  margin: 0;
 }
 
 .login-form {

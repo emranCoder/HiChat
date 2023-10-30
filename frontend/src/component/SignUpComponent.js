@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { setCookie } from '../utility/cookie';
 
 export default function SignUpComponent() {
-    const navigate = useNavigate();
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
 
@@ -12,8 +11,7 @@ export default function SignUpComponent() {
     }
 
     const handleSubmit = async () => {
-        console.log("Click... Create User");
-        delete data.confPwd;
+        if (data && data.confPwd) delete data.confPwd;
         await fetch('http://localhost:5000/api/auth/createuser', {
             headers: {
                 'Accept': 'application/json',
@@ -27,21 +25,26 @@ export default function SignUpComponent() {
                 if (data.user) {
                     let token = data.user;
                     setCookie("auth", token, 1);
-                    navigate('/');
+                    window.location.reload();
                 } else {
-                    setError(data.err);
+                    if (data.err) {
+                        setError(data.err);
+                    } else { setError(null); }
                 }
 
             })
             .catch((err) => {
                 console.log(err);
             });
+
+
+
     }
     console.log(error);
     return (
         <div className='container-fluid'>
             <div className="row m-auto">
-                <div className="col-md-1 col-lg-1 ">
+                <div className="col-md-1 col-lg-1 col-hide">
                     <div className="logo-box sign-up-logo" >
                         <h3 className='logo-title '>HiChat</h3>
                     </div>

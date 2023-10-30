@@ -10,11 +10,14 @@ export default function LoginComponent() {
 
         setData({ ...data, [e.target.name]: e.target.value })
     }
-
+    const activeLogin = () => {
+        const log = document.querySelector('.log');
+        const formLog = document.querySelector('.form-log');
+        log.classList.add('d-none');
+        formLog.classList.remove('col-hide');
+    }
     const handleSubmit = async () => {
-        let token;
-        let id;
-        await fetch('http://localhost:5000/api/login/', {
+        const res = await fetch('http://localhost:5000/api/login/', {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -22,48 +25,54 @@ export default function LoginComponent() {
             method: "POST",
             body: JSON.stringify(data),
         })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.err) {
-                    setError(data);
-                } else {
-                    token = data.token;
-                    id = data.id;
-                    setCookie("auth", token, 24);
-                    setCookie("ID", id, 1);
-                    window.location.reload();
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+        const response = await res.json();
+        if (res.status === 200) {
+            const token = response.token;
+            const id = response.id;
+            setCookie("auth", token, 24);
+            setCookie("ID", id, 24);
+            window.location.reload();
+        } else {
+            if (response.err) {
+                setError(response.err);
+            } else {
+                setError({
+                    username: {
+                        msg: "Username not allowed to be empty!",
+                    },
+                    pwd: { msg: "Password not allowed to be empty!" }
+                });
+            }
+        }
 
     }
-
     return (
-        <div className='container '>
+        <div className="container">
             <div className="row m-auto">
-                <div className="col-md-6 col-lg-6 m-auto">
+                <div className="col-md-6 col-lg-6 m-auto log">
                     <div className="logo-box p-5" >
                         <h3 className='logo-title'>HiChat</h3>
                         <p>Connecting Conversations, One Message at a Time.</p>
+                        <button onClick={activeLogin} className="btn btn-primary rounded-pill btn-login d-none">
+                            Get Started
+                        </button>
                     </div>
                 </div>
-                <div className="col-md-6 col-lg-6 m-auto">
-                    <form onSubmit={(e) => { e.preventDefault() }} className='login-form rounded-5 p-5 ' >
+                <div className="col-hide col-md-6 col-lg-6 m-auto form-log">
+                    <form onSubmit={(e) => { e.preventDefault() }} className='login-form rounded-5 p-5' >
                         <h3 className='form-title mb-5 mt-0'>Login Form</h3>
                         <div className="mb-3">
                             <input
                                 placeholder='Email, Mobile or Username'
                                 type="text"
-                                className={(((error != null) && (error.err.username.msg)) && ("form-control rounded-pill border-danger")) || ("form-control rounded-pill border")}
+                                className={(((error != null) && (error.username)) && ("form-control rounded-pill border-danger")) || ("form-control rounded-pill border")}
                                 id="username"
                                 aria-describedby="emailHelp"
                                 name='username'
                                 onChange={handleInput}
                             />
-                            {(error != null && error) && (<span id="emailError" className="form-text text-danger">
-                                {error.err.username.msg}
+                            {(error != null && error.username) && (<span id="emailError" className="form-text text-danger">
+                                {error.username.msg}
                             </span>)}
 
                         </div>
@@ -72,12 +81,12 @@ export default function LoginComponent() {
                                 placeholder='Password'
                                 type="password"
                                 name='pwd'
-                                className={((error != null && error.err.pwd.msg) && ("form-control rounded-pill border-danger")) || ("form-control rounded-pill ")}
+                                className={((error != null && error.pwd) && ("form-control rounded-pill border-danger")) || ("form-control rounded-pill ")}
                                 id="pwd"
                                 onChange={handleInput}
                             />
-                            {(error != null && error.err.pwd.msg) && (<span id="emailError" className="form-text text-danger">
-                                {error.err.pwd.msg}
+                            {(error != null && error.pwd) && (<span id="emailError" className="form-text text-danger">
+                                {error.pwd.msg}
                             </span>)}
                         </div>
                         <div className="mb-3">

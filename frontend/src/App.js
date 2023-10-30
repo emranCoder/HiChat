@@ -11,10 +11,8 @@ function App() {
     <>
       <BrowserRouter >
         {(auth && <Header />)}
-        {auth && <ChatBox />}
         <Routes>
-
-          <Route path="/" Component={(!auth && LoginComponent)} />
+          <Route path="/" Component={(auth && ChatBox) || LoginComponent} />
           <Route path="/signup" Component={!auth && SignUpComponent} />
         </Routes>
       </BrowserRouter >

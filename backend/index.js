@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors')
 const path = require('path');
 const db = require('./config/db');
 const dotenv = require('dotenv');
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
 app.use('/avatar', express.static(path.join(__dirname, '/public/uploads/avatars')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors())
 
 
 
